@@ -563,7 +563,7 @@ border: 0.2vw solid black;
 
 
 .con{
-    width:10%;
+    width:30%;
     position: relative;
 
 text-align: left;
@@ -571,7 +571,7 @@ text-align: left;
 
 }
 .con img{
-    width:10%;
+    width:30%;
     height:auto;
 
 }
