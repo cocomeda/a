@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,28 +9,34 @@
         .then(() => {
           liff.getIDToken()
             .then(idToken => {
-              fetch('https://script.google.com/macros/s/AKfycbyengPVrrPkdniUZXOmxkS__9qtQdzcf6OE81fMl7SrsmHv6ooJRRfwCI39o3cFQozXZw/exec', {
-                method: 'POST',
+              fetch('https://script.google.com/macros/s/AKfycbzZ8X72AXxOFz1nJuFr5I1oPR40kb46EG5XFwHa56mY_VaB_fn4UfuWqnGQ4fHG9XkM-g/exec?idToken=' + encodeURIComponent(idToken), {
+                method: 'GET',
                 headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: new URLSearchParams({
-                  token: idToken
-                })
+                }
               })
               .then(response => response.json())
               .then(data => {
                 if (data.status === 'success') {
                   alert('抽選結果: ' + data.result);
                 } else {
-                  alert(data.message);
+                  alert('エラー: ' + data.message);
                 }
               })
-              .catch(error => console.error('Error:', error));
+              .catch(error => {
+                console.error('通信エラー:', error);
+                alert('通信エラーが発生しました。');
+              });
             })
-            .catch(err => console.error('IDトークン取得エラー:', err));
+            .catch(err => {
+              console.error('IDトークン取得エラー:', err);
+              alert('IDトークン取得エラーが発生しました。');
+            });
         })
-        .catch(err => console.error('LIFF初期化エラー:', err));
+        .catch(err => {
+          console.error('LIFF初期化エラー:', err);
+          alert('LIFF初期化エラーが発生しました。');
+        });
     }
   </script>
 </head>
@@ -40,5 +45,4 @@
   <button onclick="initializeApp()">くじ引き</button>
 </body>
 </html>
-
 
