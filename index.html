@@ -1,220 +1,44 @@
+
 <!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>coco medaka 35</title>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/style_spinner.css">
-	
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-  
-    <script src="index.js"></script>
-   
-</head>
-<body>
-	
-<style>
-
-.pie22{
-  width: 4.5vw;
-  height: 4.5vw;
-  border-radius: 50%;
-  background-image: conic-gradient(white 0deg 0deg, #faf9f1 0deg 360deg);
-  border: 0.2vw double solid #faf9f1;
-}
-
-  .vertical-progress-bar {
-    height: 4.2vw; /* 縦の長さ */
-    width: 1vw; /* 横の幅 */
-    background-color: #faf9f1;/* #f3f3f3 */
-    position: relative;
-    border: 0.2vw solid #faf9f1;/*  */
-    border-radius: 0.2vw; /* 上端の左側を丸める */
-transform: translate(-15%,0%);
-
-  }
-
-  .vertical-progress-bar-inner {
-    position: absolute;
-    bottom: 0; /* 下からの高さを調整 */
-    width: 100%;
-    background-color: black;
-  }
-	
-</style>
-
-<div id="main">
-
-<section>
-
-<div class="con">
-<img src="leaf.png">
-
-<pa><div id="data-container3">-</div></pa>
-<pb><div id="data-container2">now loading...</div></pb>
-<pa1><div class="vertical-progress-bar">
-  <div id="progressBar_vertical" class="vertical-progress-bar-inner" style="height:0%;"></div>
-</div></pa1>	
-</div>
-
-  <div style="width: 100%; border: 0.2vw solid #ccc;">
-    <div id="progressBar" style="width: 0%; height: 0.3vw; background-color: #7cfc00;"></div>
-  </div>
-
-<form id="form1">
- 
-<div class="box-simple5">
-   
-	
-<h1 class="m">　４桁の数字を入力してから　<br>確定ボタンを押してください
-<h1 class="m1"><a href="a_point.html">CoCoポイントについて</a></h1>
-
-	
-  <h1 class="ss"><input type="number" name="serialcode" min="1000" max="9999" oninput="javascript: this.value = this.value.slice(0, 4);" style="width:75vw;" style=”ime-mode:disabled;" class="code" placeholder=" 0000" required></h1>
-
-
-
-<h5 class="kt"><div><input type="submit" value="確定する" class="button" ></div></h5>
-
-
-
-</h1></div>	
-
-<h1 class="m1">※コードは代金をお支払い後に入力してください。</h1>
-<h1 class="m1">※結果はLineのトーク画面に出力されます。</h1>
-<h1 class="m1">※処理には数秒かかる可能性があります。</h1>
-	
-</form>
-
-<hr style="border:0;border-top:1px solid;">
-
-	
-	
-<h1 class="m1">© Coco Medaka35</h1>
-
-<h1 class="htu"></h1>
-	
-
-
-    <script>
-        // LIFFの初期化
-        liff.init({ liffId: '1657196041-vDWabr0g' }, () => {
-            if (liff.isLoggedIn()) {
-                // ユーザーがログインしている場合
-                sendIdTokenToGAS();
-            } else {
-                // ログインが必要な場合、ログインページを表示
-                liff.login();
-            }
-        });
-
-        // IDトークンをGASに送信する関数
-        function sendIdTokenToGAS() {
-            const idToken = liff.getIDToken();
-
-            // ローディング画像表示
-            $('#loading').show();
-
-            // IDトークンをGASに送信
-            $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbz4I7jwbEU7UFqtoFQnCzVqKtG5xA9dBUw0s-jR8aBxbZ5LzIF8ISLXU7czUhVPYTBnjQ/exec',
-                type: 'POST',
-                data: { idToken: idToken },
-                success: function (response) {
-                    // 成功時
-                    console.log(response);
-                    displayData(response);
+  <title>くじ引き</title>
+  <script src="https://static.line-scdn.net/liff/edge/liff.min.js"></script>
+  <script>
+    function initializeApp() {
+      liff.init({ liffId: "1657196041-ALeOLrEa" })
+        .then(() => {
+          liff.getIDToken()
+            .then(idToken => {
+              fetch('https://script.google.com/macros/s/AKfycbw_OMUOm7QNSYrJnLLXN-EI4i6qNgweqmZ4bJ22AwBFunYQubK2h3Enw5r-xdEMNEUEQw/exec', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                error: function (error) {
-                    // エラー時
-                    console.error(error);
-                    alert('Failed to send ID Token to GAS.');
-                },
-                complete: function () {
-                    // 通信完了時の処理（ローディング画像を非表示にし、コンテンツを表示）
-                    $('#loading').hide();
-                    $('#content').show();
+                body: new URLSearchParams({
+                  token: idToken
+                })
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.status === 'success') {
+                  alert('抽選結果: ' + data.result);
+                } else {
+                  alert(data.message);
                 }
-            });
-        }
-  
- // メッセージを表示する関数
-    function displayMessage(message) {
-        const messageElement = document.createElement('p');
-        messageElement.textContent = message;
-        document.body.appendChild(messageElement);
+              })
+              .catch(error => console.error('Error:', error));
+            })
+            .catch(err => console.error('IDトークン取得エラー:', err));
+        })
+        .catch(err => console.error('LIFF初期化エラー:', err));
     }
-
-    // 取得したデータをHTMLに表示する関数
-    function displayData(data) {
-        const jsonData = JSON.parse(data);
-
-
-   const progressBar0 = document.getElementById('progressBar_vertical');
-   // progressBar0.textContent = `あと${jsonData.nextRank} pt `; 
-  progressBar0.style.height = `${jsonData.progress_rate*100}`+'%';
- //progressBar0.style.height = "10"+"vw";
-
-
-
-   const progressBar = document.getElementById('progressBar');
-   // progressBar.textContent = `${jsonData.score} `; 
-  progressBar.style.width = `${jsonData.progress_rate*100}`+'vw';
- //progressBar.style.height = "10"+"vw";
-
-
-
-        const container2 = document.getElementById("data-container2");
-        const container3 = document.getElementById("data-container3");
-        const container4 = document.getElementById("data-container4");
-
-        const paragraph2 = document.createElement("p_pt");
-        paragraph2.textContent =`${jsonData.score}℗ `;　// pt
-　　　　container2.textContent = ""; // 既存のコンテンツをクリア
-        container2.appendChild(paragraph2);
-
-        const paragraph3 = document.createElement("p_rank");
-        paragraph3.textContent = `${jsonData.rank} `;　//rank
-　　　　container3.textContent = ""; // 既存のコンテンツをクリア
-        container3.appendChild(paragraph3);
-        document.querySelector("pa").style.border = "1vw double gray";
-	    
-  document.querySelector(".vertical-progress-bar").style.border = "0.2vw solid gray";
-
-
-
-  if (jsonData.rank === "レギュラー") {
-      document.querySelector("pa").style.backgroundColor = "#f5deb3";
-    } else if (jsonData.rank === "シルバー") {
-      document.querySelector("pa").style.backgroundColor = "#f5f5f5";
-    } else if (jsonData.rank === "ゴールド") {
-      document.querySelector("pa").style.backgroundColor = "#f0e68c";
-    } else if (jsonData.rank === "プラチナ") {
-      document.querySelector("pa").style.backgroundColor = "#add8e6";
-    } else if (jsonData.rank === "ダイヤモンド") {
-      document.querySelector("pa").style.backgroundColor = "#1e90ff";
-    } else {
-      // その他の場合のデフォルトの背景色を設定
-      document.querySelector("pa").style.backgroundColor = "#f5f5dc";
-    }
-
-    }
-
-
-    </script>
+  </script>
+</head>
+<body onload="initializeApp()">
+  <h1>くじ引き</h1>
+  <button onclick="initializeApp()">くじ引き</button>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
