@@ -15,7 +15,7 @@
                         // IDトークンの取得
                         liff.getIDToken().then(idToken => {
                             // GASサーバーにリクエストを送信
-                            fetch('https://script.google.com/macros/s/AKfycbyzlTPTeu6FAJ6g578xtbnpQZwOf9Cgtxzr3MNxrFzP1xQd6QGvIFxcNKDQAeCkU1IP/exec', {
+                            fetch('https://script.google.com/macros/s/AKfycbyyJDqLQsZ9b1WhdD8uK7f302QGkRx53JRJBTfbo_LxvHp66SF2NUssrwXkOiHsqqTf/exec', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({ idToken: idToken })
