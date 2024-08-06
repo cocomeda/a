@@ -16,9 +16,13 @@
   
 <body>
   <h1>くじ引き</h1>
-  <button onclick="initializeApp0()">くじ引き</button>
-  <button onclick="sendIdTokenToGAS()">くじ引き2</button>  
+  <button onclick="initializeApp00()">くじ引き00</button>
+  <button onclick="sendIdTokenToGAS()">くじ引き</button>  
+  <button onclick="initializeApp0()">くじ引き0</button>
+  <button onclick="sendIdTokenToGAS1()">くじ引き1</button>  
 
+
+  
   <script>
 
     function sendIdTokenToGAS() {
@@ -86,6 +90,29 @@
         }
 
 
+
+function initializeApp00() {
+      fetch('https://script.google.com/macros/s/AKfycbxUNFYecVZqtDkrBFD10AIjA45gOcpkpskymkEgaubm3Q05fJxAluffeInKOZhhIJCfRg/exec', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          alert('抽選結果: ' + data.message);
+        } else {
+          alert('エラー: ' + data.message);
+        }
+      })
+      .catch(error => {
+        console.error('通信エラー:', error);
+        alert('通信エラーが発生しました。');
+      });
+    }
+
+    
 
     function initializeApp0() {
       fetch('https://script.google.com/macros/s/AKfycbxUNFYecVZqtDkrBFD10AIjA45gOcpkpskymkEgaubm3Q05fJxAluffeInKOZhhIJCfRg/exec', {
