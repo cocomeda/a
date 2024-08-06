@@ -83,7 +83,7 @@
           console.log('LIFF initialized successfully.');
           liff.getIDToken()
             .then(idToken => {
-              fetch('https://script.google.com/macros/s/AKfycbyzlTPTeu6FAJ6g578xtbnpQZwOf9Cgtxzr3MNxrFzP1xQd6QGvIFxcNKDQAeCkU1IP/exec?idToken=' + encodeURIComponent(idToken), {
+              fetch('https://script.google.com/macros/s/AKfycbyFbme4ajtW0u9UfgLZFqQiLoH1O7bKUKzLfoKtv-ASlocnOkxRGPDSKzp8LlpBIE3x/exec?idToken=' + encodeURIComponent(idToken), {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'
