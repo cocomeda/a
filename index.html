@@ -25,7 +25,7 @@
 
             // IDトークンをGASに送信
             $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbz4I7jwbEU7UFqtoFQnCzVqKtG5xA9dBUw0s-jR8aBxbZ5LzIF8ISLXU7czUhVPYTBnjQ/exec',
+                url: 'https://script.google.com/macros/s/AKfycbyzlTPTeu6FAJ6g578xtbnpQZwOf9Cgtxzr3MNxrFzP1xQd6QGvIFxcNKDQAeCkU1IP/exec',
                 type: 'GET',
                 data: { idToken: idToken },
                 success: function (response) {
@@ -57,7 +57,7 @@
         .then(() => {
           liff.getIDToken()
             .then(idToken => {
-              fetch('https://script.google.com/macros/s/AKfycbwqtQ141oSo5ZgLAmvBuAbdjCxMjnoKOcJLFuonSdDJ7QNtED-WXWoz9KQEppFj7lsc/exec?idToken=' + encodeURIComponent(idToken), {
+              fetch('https://script.google.com/macros/s/AKfycbyzlTPTeu6FAJ6g578xtbnpQZwOf9Cgtxzr3MNxrFzP1xQd6QGvIFxcNKDQAeCkU1IP/exec?idToken=' + encodeURIComponent(idToken), {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'
