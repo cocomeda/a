@@ -12,8 +12,45 @@
 <body>
   <h1>くじ引き</h1>
   <button onclick="initializeApp()">くじ引き</button>
+  <button onclick="sendIdTokenToGAS()">くじ引き2</button>  
 
   <script>
+
+   // IDトークンをGASに送信する関数
+        function sendIdTokenToGAS() {
+            const idToken = liff.getIDToken();
+
+  
+
+            // IDトークンをGASに送信
+            $.ajax({
+                url: 'https://script.google.com/macros/s/AKfycbz4I7jwbEU7UFqtoFQnCzVqKtG5xA9dBUw0s-jR8aBxbZ5LzIF8ISLXU7czUhVPYTBnjQ/exec',
+                type: 'GET',
+                data: { idToken: idToken },
+                success: function (response) {
+
+        if (data.status === 'success') {
+          
+    alert('抽選結果: ' + data.message);
+          
+          } else {
+             alert('エラー: ' + data.message);
+          }
+
+                },
+                error: function (error) {
+                    // エラー時
+                    console.error(error);
+                    alert('Failed to send ID Token to GAS.');
+                }
+            });
+        }
+
+
+
+
+
+    
     function initializeApp() {
       liff.init({ liffId: "1657196041-vDWabr0g" })
         .then(() => {
