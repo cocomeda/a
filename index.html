@@ -79,9 +79,43 @@
 
 
 
-
+ function initializeApp() {
+      liff.init({ liffId: "1657196041-vDWabr0g" })
+        .then(() => {
+          console.log('LIFF initialized successfully.');
+          liff.getIDToken()
+            .then(idToken => {
+              fetch('https://script.google.com/macros/s/AKfycbyzlTPTeu6FAJ6g578xtbnpQZwOf9Cgtxzr3MNxrFzP1xQd6QGvIFxcNKDQAeCkU1IP/exec?idToken=' + encodeURIComponent(idToken), {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                }
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.status === 'success') {
+                  alert('抽選結果: ' + data.message);
+                } else {
+                  alert('エラー: ' + data.message);
+                }
+              })
+              .catch(error => {
+                console.error('通信エラー:', error);
+                alert('通信エラーが発生しました。');
+              });
+            })
+            .catch(err => {
+              console.error('IDトークン取得エラー:', err);
+              alert('IDトークン取得エラーが発生しました。');
+            });
+        })
+        .catch(err => {
+          console.error('LIFF初期化エラー:', err);
+          alert('LIFF初期化エラーが発生しました。詳細: ' + err.message);
+        });
+    }
     
-    function initializeApp() {
+    function initializeApp2() {
       liff.init({ liffId: "1657196041-vDWabr0g" })
         .then(() => {
           liff.getIDToken()
