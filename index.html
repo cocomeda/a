@@ -19,11 +19,38 @@
 
   <script>
 
-   // IDトークンをGASに送信する関数
-        function sendIdTokenToGAS() {
-            const idToken = liff.getIDToken();
 
-  
+
+    function sendIdTokenToGAS() {
+      // IDトークンを非同期で取得
+      liff.getIDToken()
+        .then(idToken => {
+          // IDトークンをGASに送信
+          $.ajax({
+            url: 'https://script.google.com/macros/s/AKfycbyzlTPTeu6FAJ6g578xtbnpQZwOf9Cgtxzr3MNxrFzP1xQd6QGvIFxcNKDQAeCkU1IP/exec',
+            type: 'GET',
+            data: { idToken: idToken },
+            success: function(response) {
+              // サーバーからのレスポンスを処理
+              if (response.status === 'success') {
+                alert('抽選結果: ' + response.message);
+              } else {
+                alert('エラー: ' + response.message);
+              }
+            },
+            error: function(xhr, status, error) {
+              // エラー時
+              console.error('エラー:', status, error);
+              alert('IDトークンの送信に失敗しました。');
+            }
+          });
+        })
+        .catch(err => console.error('IDトークン取得エラー:', err));
+    }
+    
+   // IDトークンをGASに送信する関数
+        function sendIdTokenToGAS1() {
+            const idToken = liff.getIDToken();
 
             // IDトークンをGASに送信
             $.ajax({
