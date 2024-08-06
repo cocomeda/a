@@ -97,9 +97,9 @@
       .then(response => response.json())
       .then(data => {
         if (data.status === 'success') {
-          alert('抽選結果: ' + data.message);
+          showModal('抽選結果: ' + data.message);
         } else {
-          alert('エラー: ' + data.message);
+          showModal('エラー: ' + data.message);
         }
       })
       .catch(error => {
