@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>くじ引き２</title>
+  <title>くじ引き</title>
   <script src="https://static.line-scdn.net/liff/edge/liff.min.js"></script>
   <script>
     function initializeApp() {
@@ -9,7 +9,7 @@
         .then(() => {
           liff.getIDToken()
             .then(idToken => {
-              fetch('https://script.google.com/macros/s/AKfycbzZ8X72AXxOFz1nJuFr5I1oPR40kb46EG5XFwHa56mY_VaB_fn4UfuWqnGQ4fHG9XkM-g/exec?idToken=' + encodeURIComponent(idToken), {
+              fetch('https://script.google.com/macros/s/AKfycbxqgzCYXCUj3E3oplQd7i2QcxNtFnDa5MZ8OsdEhkf_2MooaPbQlMqJ62bo8ceLM_KG/exec?idToken=' + encodeURIComponent(idToken), {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'
@@ -46,3 +46,7 @@
 </body>
 </html>
 
+
+
+
+          
