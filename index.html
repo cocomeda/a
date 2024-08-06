@@ -11,25 +11,43 @@
 
   <script>
     function initializeApp() {
-      fetch('https://script.google.com/macros/s/AKfycbwqtQ141oSo5ZgLAmvBuAbdjCxMjnoKOcJLFuonSdDJ7QNtED-WXWoz9KQEppFj7lsc/exec', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.status === 'success') {
-          alert('抽選結果: ' + data.message);
-        } else {
-          alert('エラー: ' + data.message);
-        }
-      })
-      .catch(error => {
-        console.error('通信エラー:', error);
-        alert('通信エラーが発生しました。');
-      });
+      liff.init({ liffId: "1657196041-vDWabr0g" })
+        .then(() => {
+          liff.getIDToken()
+            .then(idToken => {
+              fetch('https://script.google.com/macros/s/AKfycbwqtQ141oSo5ZgLAmvBuAbdjCxMjnoKOcJLFuonSdDJ7QNtED-WXWoz9KQEppFj7lsc/exec?idToken=' + encodeURIComponent(idToken), {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                }
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.status === 'success') {
+                  alert('抽選結果: ' + data.message);
+                } else {
+                  alert('エラー: ' + data.message);
+                }
+              })
+              .catch(error => {
+                console.error('通信エラー:', error);
+                alert('通信エラーが発生しました。');
+              });
+            })
+            .catch(err => {
+              console.error('IDトークン取得エラー:', err);
+              alert('IDトークン取得エラーが発生しました。');
+            });
+        })
+        .catch(err => {
+          console.error('LIFF初期化エラー:', err);
+          alert('LIFF初期化エラーが発生しました。');
+        });
     }
+
+
+
+
   </script>
   
 </body>
