@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽選アプリ</title>
+    <script src="https://static.line-scdn.net/liff/2.1/sdk.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // LIFFの初期化
+            liff.init({ liffId: "1657196041-vDWabr0g" }).then(() => {
+                if (liff.isLoggedIn()) {
+                    document.getElementById('lotteryButton').addEventListener('click', () => {
+                        // IDトークンの取得
+                        liff.getIDToken().then(idToken => {
+                            // GASサーバーにリクエストを送信
+                            fetch('https://script.google.com/macros/s/AKfycbyzlTPTeu6FAJ6g578xtbnpQZwOf9Cgtxzr3MNxrFzP1xQd6QGvIFxcNKDQAeCkU1IP/exec', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ idToken: idToken })
+                            })
+                            .then(response => response.json())
+                            .then(result => {
+                                // ポップアップで結果を表示
+                                alert(`抽選結果: ${result}`);
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('抽選に失敗しました。');
+                            });
+                        });
+                    });
+                } else {
+                    liff.login();
+                }
+            }).catch(err => {
+                console.error('LIFF Initialization failed ', err);
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>抽選アプリ</h1>
+    <button id="lotteryButton">抽選する</button>
+</body>
+</html>
+
+
+
+
