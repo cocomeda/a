@@ -1,0 +1,191 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>くじ引き</title>
+
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+</head>
+
+  
+<body>
+  <h1>くじ引き</h1>
+  <button onclick="initializeApp0()">くじ引き</button>
+  <button onclick="sendIdTokenToGAS()">くじ引き2</button>  
+
+  <script>
+
+    function sendIdTokenToGAS() {
+      // IDトークンを非同期で取得
+      liff.getIDToken()
+        .then(idToken => {
+          // IDトークンをGASに送信
+          $.ajax({
+            url: 'https://script.google.com/macros/s/AKfycbyFbme4ajtW0u9UfgLZFqQiLoH1O7bKUKzLfoKtv-ASlocnOkxRGPDSKzp8LlpBIE3x/exec',
+            type: 'GET',
+            data: { idToken: idToken },
+            success: function(response) {
+              // サーバーからのレスポンスを処理
+              if (response.status === 'success') {
+                alert('抽選結果: ' + response.message);
+              } else {
+                alert('エラー: ' + response.message);
+              }
+            },
+            error: function(xhr, status, error) {
+              // エラー時
+              console.error('エラー:', status, error);
+              alert('IDトークンの送信に失敗しました。');
+            }
+          });
+        })
+        .catch(err => console.error('IDトークン取得エラー:', err));
+    }
+
+
+
+
+
+
+
+
+
+    
+   // IDトークンをGASに送信する関数
+        function sendIdTokenToGAS1() {
+            const idToken = liff.getIDToken();
+
+            // IDトークンをGASに送信
+            $.ajax({
+                url: 'https://script.google.com/macros/s/AKfycbyzlTPTeu6FAJ6g578xtbnpQZwOf9Cgtxzr3MNxrFzP1xQd6QGvIFxcNKDQAeCkU1IP/exec',
+                type: 'GET',
+                data: { idToken: idToken },
+                success: function (response) {
+
+        if (data.status === 'success') {
+          
+    alert('抽選結果: ' + data.message);
+          
+          } else {
+             alert('エラー: ' + data.message);
+          }
+
+                },
+                error: function (error) {
+                    // エラー時
+                    console.error(error);
+                    alert('Failed to send ID Token to GAS.');
+                }
+            });
+        }
+
+
+
+    function initializeApp0() {
+      fetch('https://script.google.com/macros/s/AKfycbxUNFYecVZqtDkrBFD10AIjA45gOcpkpskymkEgaubm3Q05fJxAluffeInKOZhhIJCfRg/exec', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          alert('抽選結果: ' + data.message);
+        } else {
+          alert('エラー: ' + data.message);
+        }
+      })
+      .catch(error => {
+        console.error('通信エラー:', error);
+        alert('通信エラーが発生しました。');
+      });
+    }
+
+    
+
+
+ function initializeApp() {
+      liff.init({ liffId: "1657196041-vDWabr0g" })
+        .then(() => {
+          console.log('LIFF initialized successfully.');
+          liff.getIDToken()
+            .then(idToken => {
+              fetch('https://script.google.com/macros/s/AKfycbyFbme4ajtW0u9UfgLZFqQiLoH1O7bKUKzLfoKtv-ASlocnOkxRGPDSKzp8LlpBIE3x/exec?idToken=' + encodeURIComponent(idToken), {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                }
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.status === 'success') {
+                  alert('抽選結果: ' + data.message);
+                } else {
+                  alert('エラー: ' + data.message);
+                }
+              })
+              .catch(error => {
+                console.error('通信エラー:', error);
+                alert('通信エラーが発生しました。');
+              });
+            })
+            .catch(err => {
+              console.error('IDトークン取得エラー:', err);
+              alert('IDトークン取得エラーが発生しました。');
+            });
+        })
+        .catch(err => {
+          console.error('LIFF初期化エラー:', err);
+          alert('LIFF初期化エラーが発生しました。詳細: ' + err.message);
+        });
+    }
+    
+    function initializeApp2() {
+      liff.init({ liffId: "1657196041-vDWabr0g" })
+        .then(() => {
+          liff.getIDToken()
+            .then(idToken => {
+              fetch('https://script.google.com/macros/s/AKfycbyzlTPTeu6FAJ6g578xtbnpQZwOf9Cgtxzr3MNxrFzP1xQd6QGvIFxcNKDQAeCkU1IP/exec?idToken=' + encodeURIComponent(idToken), {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                }
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.status === 'success') {
+                  alert('抽選結果: ' + data.message);
+                } else {
+                  alert('エラー: ' + data.message);
+                }
+              })
+              .catch(error => {
+                console.error('通信エラー:', error);
+                alert('通信エラーが発生しました。');
+              });
+            })
+            .catch(err => {
+              console.error('IDトークン取得エラー:', err);
+              alert('IDトークン取得エラーが発生しました。');
+            });
+        })
+        .catch(err => {
+          console.error('LIFF初期化エラー:', err);
+          alert('LIFF初期化エラーが発生しました。');
+        });
+    }
+
+
+
+
+  </script>
+  
+</body>
+</html>
