@@ -41,7 +41,7 @@
 <body>
   <h1>くじ引き</h1>
   
-    <div id="overlay"></div>
+    <div id="overlay" onclick = "closePopup()"></div>
     <div id="popup">
         <div id="popup-message"></div>
         <button onclick="closePopup()">閉じる</button>
@@ -100,7 +100,7 @@ async function sendIdTokenToGAS_00A3() {
 
     const data = await response.json();
     if (data.status === 'success') {
-      showPopup('抽選結果: ' + data.message);
+      showPopup(data.message);
     } else {
       showPopup('エラー: ' + data.message);
     }
