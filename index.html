@@ -47,7 +47,7 @@ async function sendIdTokenToGAS_00A2() {
   try {
     const idToken = await liff.getIDToken();
 
- alert('IdToken: ' + idToken);
+
     
     const response = await fetch('https://script.google.com/macros/s/AKfycbxsYIgsclgOy2wOJauz8hKhsH0uitaSmJtLcU4eepFeLb4BommjLpDStuxuYRMbUuEz/exec', {
       method: 'GET',
@@ -205,6 +205,9 @@ async function sendIdTokenToGAS_00A() {
 
 
 function initializeApp00() {
+
+ alert('IdToken: ');
+  
       fetch('https://script.google.com/macros/s/AKfycbxUNFYecVZqtDkrBFD10AIjA45gOcpkpskymkEgaubm3Q05fJxAluffeInKOZhhIJCfRg/exec', {
         method: 'GET',
         headers: {
