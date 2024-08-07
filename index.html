@@ -51,7 +51,7 @@ async function sendIdTokenToGAS_00A3() {
   try {
     const idToken = await liff.getIDToken();
     
-    const response = await fetch('https://script.google.com/macros/s/AKfycbxn6frjWazEOLQi10jvlI-WUdqv_9CIXoW6prQJ8mzqIxFWhg-m3f0l7cchn1FKNKZs/exec', {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbxdPDynU2QmlR_YhCIftdAKPCBJILjoWCSb1fF5ym0MW_Xo6IjIFS9c7LJKp0UTIvg9/exec', {
       method: 'POST', // POSTメソッドに変更
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
