@@ -29,24 +29,9 @@
 
 
 
-function initializeLiff000() {
-  liff.init({ liffId: '1657196041-vDWabr0g' })
-    .then(() => {
-      if (liff.isLoggedIn()) {
-        sendIdTokenToGAS_00A2(); // IDトークンをGASに送信する関数を呼び出す
-      } else {
-        liff.login(); // ログインしていない場合はログインページにリダイレクト
-      }
-    })
-    .catch(error => {
-      console.error('LIFFの初期化エラー:', error);
-      alert('LIFFの初期化に失敗しました。');
-    });
-}
 
 
-
-function initializeLiff000() {
+function initializeLiff0003() {
   liff.init({ liffId: '1657196041-vDWabr0g' })
     .then(() => {
       if (liff.isLoggedIn()) {
@@ -101,6 +86,21 @@ async function sendIdTokenToGAS_00A3() {
 
 
     
+function initializeLiff000() {
+  liff.init({ liffId: '1657196041-vDWabr0g' })
+    .then(() => {
+      if (liff.isLoggedIn()) {
+        sendIdTokenToGAS_00A2(); // IDトークンをGASに送信する関数を呼び出す
+      } else {
+        liff.login(); // ログインしていない場合はログインページにリダイレクト
+      }
+    })
+    .catch(error => {
+      console.error('LIFFの初期化エラー:', error);
+      alert('LIFFの初期化に失敗しました。');
+    });
+}
+
 
 async function sendIdTokenToGAS_00A2() {
   try {
