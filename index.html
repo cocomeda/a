@@ -47,7 +47,7 @@ async function sendIdTokenToGAS_00A2() {
   try {
     const idToken = await liff.getIDToken();
 
- alert('抽選結果: ' + IdToken);
+ alert('IdToken: ' + idToken);
     
     const response = await fetch('https://script.google.com/macros/s/AKfycbxT5vo_QIWAe_5m0i-cEPPDQf1vGl5fp1X7-MuEdrtw2DVlboirfOeP6mCC88Rn_3M/exec', {
       method: 'GET',
