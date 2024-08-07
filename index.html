@@ -17,11 +17,68 @@
   <button onclick="initializeApp()">くじ引き</button>  
   <button onclick="initializeApp0()">くじ引き0</button>
   <button onclick="sendIdTokenToGAS1()">くじ引き1</button>  
-
+  <button onclick="initializeLiff000()">引き1</button>  
 
   
   <script>
 
+
+
+function initializeLiff000() {
+  liff.init({ liffId: '1657196041-vDWabr0g' })
+    .then(() => {
+      if (liff.isLoggedIn()) {
+        sendIdTokenToGAS_00A(); // IDトークンをGASに送信する関数を呼び出す
+      } else {
+        liff.login(); // ログインしていない場合はログインページにリダイレクト
+      }
+    })
+    .catch(error => {
+      console.error('LIFFの初期化エラー:', error);
+      alert('LIFFの初期化に失敗しました。');
+    });
+}
+
+
+function sendIdTokenToGAS_00A() {
+  const idToken = liff.getIDToken(); // LINEのIDトークンを取得
+
+  fetch('https://script.google.com/macros/s/AKfycbxUNFYecVZqtDkrBFD10AIjA45gOcpkpskymkEgaubm3Q05fJxAluffeInKOZhhIJCfRg/exec', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ' + idToken // IDトークンをAuthorizationヘッダーに追加
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'success') {
+      showModal('抽選結果: ' + data.message);
+    } else {
+      showModal('エラー: ' + data.message);
+    }
+  })
+  .catch(error => {
+    console.error('通信エラー:', error);
+    alert('通信エラーが発生しました。');
+  });
+}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     function sendIdTokenToGAS() {
       // IDトークンを非同期で取得
       liff.getIDToken()
@@ -50,6 +107,15 @@
     }
 
 
+
+
+
+
+
+
+
+
+    
 
 
 
