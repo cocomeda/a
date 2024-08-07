@@ -53,9 +53,9 @@ function sendIdTokenToGAS_00A() {
   .then(response => response.json())
   .then(data => {
     if (data.status === 'success') {
-      showModal('抽選結果: ' + data.message);
+      alert('抽選結果: ' + data.message);
     } else {
-      showModal('エラー: ' + data.message);
+      alert('エラー: ' + data.message);
     }
   })
   .catch(error => {
