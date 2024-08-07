@@ -158,6 +158,16 @@ async function sendIdTokenToGAS_00A2() {
 
 
 
+   function showPopup(message) {
+            document.getElementById('popup-message').innerText = message;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
 
 
 
