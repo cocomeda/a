@@ -30,6 +30,45 @@
         #popup button {
             margin-top: 1vw;
         }
+
+
+
+
+   body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* ボタンを横に均等に並べる */
+            padding: 1vw; /* コンテナ内の余白 */
+            box-sizing: border-box; /* パディングを幅に含める */
+        }
+        .img-button {
+            width: 30vw; /* ビューポート幅の30% */
+            height: 30vw; /* 高さは自動調整 */
+            border: none;
+            border-radius: 2vw;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        .img-button:hover {
+            opacity: 0.8;
+        }
+        a {
+            display: block;
+            text-decoration: none;
+        }
+
+
+
+
+
+
+
+      
     </style>
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -46,6 +85,13 @@
         <div id="popup-message"></div>
         <button onclick="closePopup()">閉じる</button>
     </div>
+
+
+      <div class="button-container">
+<img src="QRCR_r1.jpg" class="img-button" alt="QRコードリーダー" onclick="initializeLiff0003()">
+<a href="numberForm.html"><img src="4kfm1.jpg" class="img-button" alt="コード入力フォーム"></a>
+<a href="reservation.html"><img src="RSVT1.jpg" class="img-button" alt="予約注文"></a>
+      </div>  
 
   
   <br>
