@@ -17,7 +17,10 @@
   <button onclick="initializeApp()">くじ引き</button>  
   <button onclick="initializeApp0()">くじ引き0</button>
   <button onclick="sendIdTokenToGAS1()">くじ引き1</button>  
-  <button onclick="initializeLiff000()">引き1</button>  
+
+  <br>
+  <Br>
+  <button onclick="initializeLiff000()">ボタン</button>  
 
   
   <script>
@@ -28,7 +31,7 @@ function initializeLiff000() {
   liff.init({ liffId: '1657196041-vDWabr0g' })
     .then(() => {
       if (liff.isLoggedIn()) {
-        sendIdTokenToGAS_00A(); // IDトークンをGASに送信する関数を呼び出す
+        sendIdTokenToGAS_00A2(); // IDトークンをGASに送信する関数を呼び出す
       } else {
         liff.login(); // ログインしていない場合はログインページにリダイレクト
       }
@@ -40,16 +43,23 @@ function initializeLiff000() {
 }
 
 
-async function sendIdTokenToGAS_00A() {
+async function sendIdTokenToGAS_00A2() {
   try {
-    const idToken = await liff.getIDToken(); // 非同期でIDトークンを取得
+    const idToken = await liff.getIDToken();
     const response = await fetch('https://script.google.com/macros/s/AKfycbxUNFYecVZqtDkrBFD10AIjA45gOcpkpskymkEgaubm3Q05fJxAluffeInKOZhhIJCfRg/exec', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer ' + idToken // IDトークンをAuthorizationヘッダーに追加
+        'Authorization': 'Bearer ' + idToken
       }
     });
+
+    if (!response.ok) {
+      console.error('HTTPエラー:', response.status);
+      alert('HTTPエラーが発生しました。ステータスコード: ' + response.status);
+      return;
+    }
+
     const data = await response.json();
     if (data.status === 'success') {
       alert('抽選結果: ' + data.message);
@@ -63,6 +73,32 @@ async function sendIdTokenToGAS_00A() {
 }
 
 
+
+
+    
+
+async function sendIdTokenToGAS_00A() {
+  try {
+    const idToken = await liff.getIDToken(); // 非同期でIDトークンを取得
+    const response = await fetch('https://script.google.com/macros/s/AKfycbxUNFYecVZqtDkrBFD10AIjA45gOcpkpskymkEgaubm3Q05fJxAluffeInKOZhhIJCfRg/exec', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Bearer ' + idToken // IDトークンをAuthorizationヘッダーに追加
+      }
+    });
+    const data = await response.json();
+    
+    if (data.status === 'success') {
+      alert('抽選結果: ' + data.message);
+    } else {
+      alert('エラー: ' + data.message);
+    }
+  } catch (error) {
+    console.error('通信エラー:', error);
+    alert('通信エラーが発生しました。');
+  }
+}
 
 
 
@@ -186,8 +222,7 @@ function initializeApp00() {
 
     
     
-    
-    
+
     
     
     
