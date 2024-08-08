@@ -257,6 +257,9 @@ text-align: left;
     async function sendIdTokenToGAS_00A3() {
       try {
         const idToken = await liff.getIDToken();
+
+　　const answersplusone = answers.map(answer => answer + 1);
+          
         const response = await fetch('https://script.google.com/macros/s/AKfycbzfwX4moL3LmZuawZ7KJd5Zus6jwGRV0UeA1yy7clHrm5_wbqJWzX6KF9LB-hyWH8_TCg/exec', {
           method: 'POST',
           headers: {
@@ -264,7 +267,7 @@ text-align: left;
           },
  　　　　　　　body: JSON.stringify({
                 'idToken': idToken,
-                'answers': answers+1 // JSON形式で送信
+                'answers': answersplusone // JSON形式で送信
             })
         });
 
