@@ -228,34 +228,69 @@ text-align: left;
                 } else {
                     const answersText = answers.map((answer, index) => `Q${index + 1}: ${answer + 1}`).join('\n');
                     //showPopup(`回答結果:\n${answersText}`);
-                    submitResults(); // 最後の問題が答えられたら自動で送信
+                    initializeLiff0003(); // 最後の問題が答えられたら自動で送信
                 }
             }, 500); // ボタンを押してから画面切り替えまでの遅延
         }
 
-        async function submitResults() {
-            try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbyXCUAsdGx7yrQSN9z5Wf3heyMN_dOZsFvZDgmGacXywWgueYDou5xXZXUm-l0YHhhTLA/exec', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ answers: answers })
-                });
 
-                if (!response.ok) {
-                    console.error('HTTPエラー:', response.status);
-                    alert('HTTPエラーが発生しました。ステータスコード: ' + response.status);
-                    return;
-                }
 
-                const data = await response.json();
-                alert('結果が送信されました。');
-            } catch (error) {
-                console.error('通信エラー:', error);
-                alert('通信エラーが発生しました。');
-            }
+
+
+
+
+
+
+
+   function initializeLiff0003() {
+      liff.init({ liffId: '1657196041-0B5JEMmG' })
+        .then(() => {
+          if (liff.isLoggedIn()) {
+            sendIdTokenToGAS_00A3(); // IDトークンをGASに送信する関数を呼び出す
+          } else {
+            liff.login(); // ログインしていない場合はログインページにリダイレクト
+          }
+        })
+        .catch(error => {
+          console.error('LIFFの初期化エラー:', error);
+          alert('LIFFの初期化に失敗しました。');
+        });
+    }
+
+    async function sendIdTokenToGAS_00A3() {
+      try {
+        const idToken = await liff.getIDToken();
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyXCUAsdGx7yrQSN9z5Wf3heyMN_dOZsFvZDgmGacXywWgueYDou5xXZXUm-l0YHhhTLA/exec', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: new URLSearchParams({
+            'idToken': idToken
+          })
+        });
+
+        if (!response.ok) {
+          console.error('HTTPエラー:', response.status);
+          alert('HTTPエラーが発生しました。ステータスコード: ' + response.status);
+          return;
         }
+
+        const data = await response.json();
+        if (data.status === 'success') {
+          showPopup(data.message);
+        } else {
+          showPopup('エラー: ' + data.message);
+        }
+      } catch (error) {
+        console.error('通信エラー:', error);
+        alert('通信エラーが発生しました。');
+      }
+    }
+
+
+
+
 
         function showPopup(message) {
             document.getElementById('popup-message').innerText = message;
