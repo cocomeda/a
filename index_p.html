@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>くじ引き</title>
+    <style>
+        #overlay {
+            display: none;
+            position: fixed;
+	@@ -13,175 +16,244 @@
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
+   #popup {
+            font-size: 5vw;
+            display: none; /* 初期状態で非表示 */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw; 
+             height: 55vw; /* */
+            border: 0.5vw solid #ccc;
+            background-color: #fff;
+            box-shadow: 0px 0px 1vw rgba(0, 0, 0, 0.2);
+            z-index: 101;
+
+          align-items: center;
+            flex-direction: column;
+                    justify-content: center;
+
+        }
+
+
+  #popup-message {
+
+ position: fixed;
+  left: 50%;
+  top: 40%;
+  transform: translateX(-50%)
+             translateY(-50%);
+
+ text-align: center; /* テキストを中央揃え */
+font-size: 4.5vw;
+
+        }
+
+
+ #popup button {
+ position: fixed;
+           top: 75%;
+            left: 25%;
+     width: 50%; /* ボタンをポップアップの幅いっぱいに */
+           height: 20%;
+  font-size: 3.5vw;
+             text-align: center; /* テキストを中央揃え */
+        }
+
+
+
+
+
+
+   body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* ボタンを横に均等に並べる */
+            padding: 1vw; /* コンテナ内の余白 */
+            box-sizing: border-box; /* パディングを幅に含める */
+        }
+        .img-button {
+            width: 30vw; /* ビューポート幅の30% */
+            height: 30vw; /* 高さは自動調整 */
+            border: none;
+            border-radius: 2vw;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        .img-button:hover {
+            opacity: 0.8;
+        }
+        a {
+            display: block;
+            text-decoration: none;
+        }
+
+
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+</head>
+
+  
+<body>
+  <h1>くじ引き</h1>
+
+    <div id="overlay" onclick = "closePopup()"></div>
+    <div id="popup">
+        <div id="popup-message"></div>
+       <button onclick="closePopup()">閉じる</button>
+    </div>
+
+
+      <div class="button-container">
+<img src="lotte2.jpg" class="img-button" alt="くじ" onclick="initializeLiff0003()">
+
+      </div>  
+
+
+ <Br>
+<br>
+<h1 class="
+honbun"></h1>
+<h1 class="
+honbun"></h1>
+
+
+<h1 class="m1">© Coco Medaka35</h1>
+
+
+  <script>
+
+
+function initializeLiff0003() {
+  liff.init({ liffId: '1657196041-vDWabr0g' })
+    .then(() => {
+      if (liff.isLoggedIn()) {
+        sendIdTokenToGAS_00A3(); // IDトークンをGASに送信する関数を呼び出す
+      } else {
+        liff.login(); // ログインしていない場合はログインページにリダイレクト
+      }
+    })
+    .catch(error => {
+      console.error('LIFFの初期化エラー:', error);
+      alert('LIFFの初期化に失敗しました。');
+    });
+}
+
+
+async function sendIdTokenToGAS_00A3() {
+  try {
+    const idToken = await liff.getIDToken();
+
+    const response = await fetch('https://script.google.com/macros/s/AKfycbzHen5flQ04oJsGjIjLmF13dz_rui9b5JLe2QvvErOLosgS47yawhd6TQH52TxZY6qH/exec', {
+      method: 'POST', // POSTメソッドに変更
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: new URLSearchParams({
+        'idToken': idToken // IDトークンをリクエストボディに含める
+      })
+    });
+
+    if (!response.ok) {
+      console.error('HTTPエラー:', response.status);
+      alert('HTTPエラーが発生しました。ステータスコード: ' + response.status);
+      return;
+    }
+
+    const data = await response.json();
+    if (data.status === 'success') {
+      showPopup(data.message);
+    } else {
+      showPopup('エラー: ' + data.message);
+    }
+  } catch (error) {
+    console.error('通信エラー:', error);
+    alert('通信エラーが発生しました1。');
+  }
+}
+
+
+
+   function showPopup(message) {
+            document.getElementById('popup-message').innerText = message;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+	@@ -192,9 +264,7 @@ <h1 class="m1">© Coco Medaka35</h1>
+            document.getElementById('popup').style.display = 'none';
+        }
+
+
+
+  </script>
+
+</body>
+</html>
