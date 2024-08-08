@@ -262,10 +262,10 @@ text-align: left;
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },
-          body: new URLSearchParams({
-            'idToken': idToken,
-            'answers': answers 
-          })
+ 　　　　　　　body: JSON.stringify({
+                'idToken': idToken,
+                'answers': answers // JSON形式で送信
+            })
         });
 
         if (!response.ok) {
