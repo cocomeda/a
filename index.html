@@ -1,310 +1,571 @@
 <!DOCTYPE html>
-<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4択クイズ[a:DWabr0g]</title>
-    <style>
-             /* 既存のスタイル */
-        #overlay {
-            display: none;
-            position: fixed;
+    <meta name="viewport" content="width=device-width">
+    <title>coco medaka 35</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style_spinner.css">
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+  
+    <script src="index.js"></script>
+   
+</head>
+<body>
+	
+<style>
+
+
+   body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 2vw 2.5vw;
+            padding:  0;
+            background-color: wheat;
+            
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between; /*  ボタンを横に均等に並べる */
+	　　
+            padding: 1vw; /* コンテナ内の余白 */
+            box-sizing: border-box; /* パディングを幅に含める */
+        }
+        .img-button {
+            width: 30vw; /* ビューポート幅の30% */
+            height: 30vw; /* 高さは自動調整 */
+            border: none;
+            border-radius: 2vw;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+		
+        }
+        .img-button:hover {
+            opacity: 0.8;
+        }
+        a {
+            display: block;
+            text-decoration: none;
+        }
+
+
+
+
+	
+.pie22{
+  width: 4.5vw;
+  height: 4.5vw;
+  border-radius: 50%;
+  background-image: conic-gradient(white 0deg 0deg, #faf9f1 0deg 360deg);
+  border: 0.2vw double solid #faf9f1;
+}
+
+  .vertical-progress-bar {
+    height: 4.2vw; /* 縦の長さ */
+    width: 1vw; /* 横の幅 */
+    /* background-color: #faf9f1;　#f3f3f3 */
+    position: relative;
+    /* border: 0.2vw solid #faf9f1; */
+    border-radius: 0.2vw; /* 上端の左側を丸める */
+transform: translate(-15%,0%);
+
+  }
+
+  .vertical-progress-bar-inner {
+    position: absolute;
+    bottom: 0; /* 下からの高さを調整 */
+    width: 100%;
+    background-color: black;
+  }
+
+
+
+h1.topo{ 
+ color: black;
+font-size: 5vw;
+/*text-align: center;*/	
+ text-align: left;
+margin-bottom: 0vw;
+margin-left: 7vw;
+}
+
+h1.topo2{ 
+ color: black;
+font-size: 5vw;
+ text-align: left;
+margin-bottom: 1vw;
+margin-left: 7vw;
+}
+
+h1.honbun{ 
+ color: black;
+font-size: 3.5vw;
+ text-align: left;
+margin-bottom: 0vw;
+margin-left: 4vw;
+}
+
+h1.honbun0{ 
+ color: black;
+font-size: 3vw;
+ text-align: left;
+margin-bottom: 0vw;
+margin-left: 4vw;
+}	
+
+p_pt {
+ color: black;
+
+font-size: 10vw;
+/* font-weight: bold; */
+ line-height: 1.5;
+}
+
+p_rank {
+ color: black;
+font-size: 3vw;
+font-weight: bold;
+}
+
+p_pie {
+ color: gray;
+
+font-size: 1vw;
+font-weight: bold;
+ line-height: 1.2;
+border: 0.2vw solid black;
+
+}
+
+
+.con{
+    width:100%;
+    position: relative;
+
+text-align: center;
+
+
+}
+.con img{
+    width:100%;
+    height:auto;
+
+}
+
+
+pa_dddd{
+position: absolute;
+text-align: center;
+top:14%;
+right:8%;
+left:65%;
+transform: translate(0%,0%);
+
+color: #faf9f1;
+font-size: 2vw;
+line-height: 1;
+background: #faf9f1;
+border: 1vw double #faf9f1;
+padding: 1vw 3vw 0.1vw 3vw;
+
+margin-left: 0vw;
+margin-right: 0vw;
+border-radius:1vw
+
+}
+
+pa{
+position: absolute;
+text-align: center;
+top:14%;
+right:8%;
+left:65%;
+transform: translate(0%,0%);
+
+color: white;
+font-size: 2vw;
+line-height: 1;
+
+
+padding: 1vw 3vw 0.1vw 3vw;
+
+margin-left: 0vw;
+margin-right: 0vw;
+border-radius:1vw
+
+}
+
+pb{
+position: absolute;
+top:41%;
+left:62%;
+right:3%;
+transform: translate(0%,0%);
+
+text-align: center;
+
+color: gray;
+font-size: 4vw;
+line-height: 1.5;
+
+margin-left: 1vw;
+margin-right: 0vw;
+
+}
+
+
+pa1{
+position: absolute;
+top:16%;
+left:94%;
+right:0%;
+transform: translate(0%,0%);
+
+font-weight: bold;
+
+color: gray;
+font-size: 2vw;
+
+
+margin-left: 0vw;
+margin-right: 0vw;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* 文字を枠で囲む */
+.box-simple1{
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid #ffaacc;
+  border-radius: 15px;  
+  
+}
+.box-simple1 p {
+  margin: 0;
+  padding: 0;
+}
+.box-simple2{
+  margin: 1em;
+  padding: 1em;
+  border: 2px dashed #ffcc99; 
+}
+.box-simple2 p {
+  margin: 0;
+  padding: 0;
+}
+.box-simple3 {
+  margin: 1em;
+  padding: 1em;
+  border: 5px dotted #aaffcc; 
+  
+}
+.box-simple3 p {
+  margin: 0;
+  padding: 0;
+}
+.box-simple4 {
+  margin: 1em;
+  padding: 1em;
+  border: 0.2vw solid black;
+  border-radius: 0.2vw;  
+  background-color: #aaffcc;
+}
+.box-simple4 p {
+  margin: 0;
+  padding: 0;
+text-align: center;
+font-size: 3.9vw;	
+
+}
+
+
+.box-simple5a {
+  margin: 1em;
+  padding: 1em;
+  background: #C7C7A8;
+ border: 1vw double #292A0A;
+border-radius: 3px;	/*角丸のサイズ*/
+}
+.box-simple5 p {
+  margin: 0;
+  padding: 0;
+}
+
+.box-simple5 {
+  margin: 1em;
+  padding: 1em;
+  background: #f5f2dc;
+ border: 1vw double #292A0A;
+border-radius: 3px;	/*角丸のサイズ*/
+}
+.box-simple5 p {
+  margin: 0;
+  padding: 0;
+}
+
+
+h1.htu3_a{ 
+ color: black;
+font-weight: bold;
+font-size: 4.3vw;
+/*text-align: center;*/	
+ text-align: center;
+margin-bottom: 0vw;
+margin-left: 2vw;
+}	
+
+
+
+        /* コンテンツを背景の下に配置する */
+        .content {
+   
+            margin-top: 0vw; /* 指定の地点より下にコンテンツを配置する（例: 200px） */
+            padding: 0vw;
+            background-color: #7cfc00; /* 内容部分の背景色 */
+            
+         position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 100;
+            height: 12%;   
+            
         }
-        #popup {
-            font-size: 5vw;
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80vw; 
-            height: 55vw;/* 上からの距離 */
-            border: 0.5vw solid #ccc;
-            background-color: #fff;
-            box-shadow: 0px 0px 1vw rgba(0, 0, 0, 0.2);
-            z-index: 101;
-            align-items: center;
-            flex-direction: column;
-            justify-content: center;
+       
+       
+       
 
-        }
+       
+       
+
+</style>
+
+	 
+	            	     
+<div id="main">
+
+<section>
+	
 
 
-        #close-btn {
-            position: absolute;
-            top: 10px; /* 上からの距離 */
-            right: 10px; /* 右からの距離 */
-            font-size: 7vw; /* バツボタンのサイズ */
-            cursor: pointer;
-        }
+	
+		 <div class="content">
+
+		     
+<div class="con">
+
+		     
+<h1 class="topo">C o C o め だ か</h1>
+<h1 class="topo2">無 人 販 売 所</h1>
+	
+<pa><div id="data-container3">-</div></pa>
+<pb><div id="data-container2">now loading...</div></pb>
+<pa1><div class="vertical-progress-bar">
+  <div id="progressBar_vertical" class="vertical-progress-bar-inner" style="height:0%;"></div>
+</div></pa1>	
+</div>
+	
+  <div style="width: 100%; border: 0.2vw solid #ccc;">
+    <div id="progressBar" style="width: 0%; height: 0.3vw; background-color: #7cfc00;"></div>
+  </div>
+	
+<h1>
+	
+</h1>
+
+    	</div> 
 
 
-        #popup-message {
-            position: fixed;
-            left: 50%;
-            top: 40%;
-            transform: translateX(-50%) translateY(-50%);
-            text-align: center;
-            font-size: 4.5vw;
-        }
-        #popup button {
-            position: fixed;
-            top: 75%;
-            left: 25%;
-            width: 50%;
-            height: 20%;
-            font-size: 3.5vw;
-            text-align: center;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-        .quiz-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .quiz-question {
-            font-size: 1.5em;
-            margin-bottom: 2vw;
-text-align: left;
-        }
-        .quiz-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            padding: 0;
-            list-style: none;
-            margin: 0;
-        }
-        .quiz-option {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            cursor: pointer;
-            border: 1px solid #ddd;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.3s ease, transform 0.1s ease;
-        }
-        .quiz-option img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .quiz-option:hover {
-            opacity: 0.5;
-        }
-        .quiz-option:active {
-            transform: scale(0.96);
-        }
-        .fade {
-            opacity: 1;
-            transition: opacity 2.0s ease;
-        }
-        .fade.hidden {
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-    </style>
-    
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    
 
-</head>
-<body>
 
-    <div id="overlay" onclick="closePopup()"></div>
-    <div id="popup">
-        <span id="close-btn" onclick="closePopup()">×</span>
-        <div id="popup-message"></div>
+<div class="con">
 
-    </div>
+		     
+<h1 class="topo"></h1>
+<h1 class="topo2"></h1>
+	
+<h1 class="topo">　　</h1>
+<h1 class="topo2">　　</h1>
 
-    <div class="quiz-container">
-        <div class="quiz-question fade" id="question">質問がここに表示されます</div>
-        <ul class="quiz-options fade">
-            <li class="quiz-option" data-index="0">
-                <img src="option1.jpg" alt="選択肢1">
-            </li>
-            <li class="quiz-option" data-index="1">
-                <img src="option2.jpg" alt="選択肢2">
-            </li>
-            <li class="quiz-option" data-index="2">
-                <img src="option3.jpg" alt="選択肢3">
-            </li>
-            <li class="quiz-option" data-index="3">
-                <img src="option4.jpg" alt="選択肢4">
-            </li>
-        </ul>
-    </div>
+</div>
+	
+  <div style="width: 100%; border: 0.2vw solid #ccc;">
+    <div id="progressBar" style="width: 0%; height: 0.3vw; background-color: #7cfc00;"></div>
+  </div>
+	
+<h1>
+	
+</h1>
+
+        
+      <div class="button-container">
+<a href="QRCR_r.html"><img src="QRCR_r1.jpg" class="img-button" alt="QRコードリーダー"></a> 
+<a href="numberForm.html"><img src="4kfm1.jpg" class="img-button" alt="コード入力フォーム"></a>
+<a href="reservation.html"><img src="RSVT1.jpg" class="img-button" alt="予約注文"></a>
+	      </div>  
+
+ <div class="button-container">	
+<a href="quiz2.html"><img src="quiz2.jpg" class="img-button" alt="quiz2"></a>
+<a href="kuji.html"><img src="lotte2.jpg" class="img-button" alt="kuji"></a>
+<a href="k.html"><img src="u_c.jpg" class="img-button" alt="u_c"></a>
+ 
+</div> 
+
+        
+
+    	 
+
+<div class="box-simple4">
+<h1 class="htu3_a">「CoCoポイント」は貯めると色んな</h1>
+<h1 class="htu3_a">イイコトがあるかもしれない</h1>
+<h1 class="htu3_a">CoCoめだか独自のポイントです。</h1>
+
+
+</div>
+
+	
+
+<br>
+
+	
+<h1 class="htu3">【ポイントの取得方法】</h1>
+<h1 class="
+honbun">１．商品記載の4桁の数字を登録する。(中央のアイコン)</h1>
+<h1 class="
+honbun">２．無人販売所に設置されたQRコードを読み取る。(左のアイコン)</h1>
+<h1 class="
+honbun0">　　※必ず”CoCoめだか専用QRコードリーダー”で読み取ってください。</h1>
+
+	
+<br>
+<h1 class="htu3">【ランク(ステータス)について】</h1>
+<h1 class="
+honbun">ポイント数に応じてランクが決まります。ポイント数とランクの対応は以下の通りです。</h1>
+<h1 class="
+honbun">　　レギュラー：1 - 14ポイント</h1>
+<h1 class="
+honbun">　　シルバー：15 - 49ポイント</h1>	
+<h1 class="
+honbun">　　ゴールド：50 - 149ポイント</h1>
+<h1 class="
+honbun">　　プラチナ：150 - 349ポイント</h1>
+<h1 class="
+honbun">　　ダイアモンド：350 - ポイント</h1>
+<br>
+	
+<h1 class="htu3">【特典など】</h1>
+<h1 class="honbun">１．シルバーランク以上で予約注文が利用できます。</h1>
+<h1 class="honbun">２．ゴールドランク以上で素敵な景品プレゼント！？</h1>
+<h1 class="honbun">３．その他、いろいろな特典を追加予定です。</h1>
+	
+<br>									 
+<h1 class="htu3">【注意事項など】</h1>
+<h1 class="
+honbun">１．システムの不具合などにより意図しないポイントが付与された場合は取り消し、修正されることがあります。</h1>
+<h1 class="
+honbun">２．QRコードの複製、改ざん、その他の不正行為が発覚した場合、ポイントの取り消しすることがあります。</h1>
+<h1 class="
+honbun">３．ポイントは換金、譲渡などはできません。</h1>
+
+<h1 class="
+honbun">４．サービスの提供に関して、技術的、運用上の問題、自然災害、またはその他の予見できない理由により、サービスの提供が一時的または永久に中断される場合があります。</h1>	
+<h1 class="
+honbun">５．サービスの中断または停止に関連して発生した直接的または間接的な損害について、「CoCoめだか」は補償の責任を負わないものとします。</h1>
+<br>
+<br>
+<h1 class="
+honbun"></h1>
+<h1 class="
+honbun"></h1>
+
+	
+<h1 class="m1">© Coco Medaka35</h1>
+
+
+
+
+
+
+
+
 
     <script>
-        const quizzes = [
-            {
-                question: "Q1. \nめだか一匹を育てるのに必要な水の量は？Q1. めだか一匹を育てるのに必要な水の量は？Q1. めだか一匹を育てるのに必要な水の量は？Q1. めだか一匹を育てるのに必要な水の量は？",
-                options: ["option1a.jpg", "option2.jpg", "option3.jpg", "option4.jpg"],
-                correct: 0
-            },
-            {
-                question: "Q2. めだかの寿命は？",
-                options: ["option1.jpg", "option2.jpg", "option3.jpg", "option4.jpg"],
-                correct: 0
-            },
-            {
-                question: "Q3. 次のうち、めだかの仲間は？",
-                options: ["option1.jpg", "option2a.jpg", "option3.jpg", "option4.jpg"],
-                correct: 2
-            },
-            {
-                question: "Q4. 買っためだかを池や川に逃がすとどうなる？",
-                options: ["option1.jpg", "option2.jpg", "option3.jpg", "option4.jpg"],
-                correct: 0
-            }
-        ];
-
-        let currentQuiz = 0;
-        const answers = [];
-        const disabled = [];
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        function loadQuiz() {
-            const questionElem = document.getElementById('question');
-            const optionsElem = document.querySelector('.quiz-options');
-            
-            questionElem.classList.add('hidden');
-            optionsElem.classList.add('hidden');
-            
-            setTimeout(() => {
-                const quiz = quizzes[currentQuiz];
-                questionElem.innerText = quiz.question;
-                const optionsElems = document.querySelectorAll('.quiz-option img');
-                
-                // シャッフルされたオプションのリストを作成
-                const shuffledOptions = [...quiz.options];
-                shuffleArray(shuffledOptions);
-
-                // シャッフルされた画像と元の解答番号のマップを作成
-                const optionIndexMap = shuffledOptions.map(opt => quiz.options.indexOf(opt));
-
-                optionsElems.forEach((optionElem, index) => {
-                    optionElem.src = shuffledOptions[index];
-                    optionElem.parentElement.onclick = () => answerQuestion(optionIndexMap[index]);
-                    optionElem.parentElement.classList.remove('disabled'); // Enable all options
-                });
-                
-                questionElem.classList.remove('hidden');
-                optionsElem.classList.remove('hidden');
-            }, 500); // トランジションの時間と合わせて変更する
-        }
-
-        function answerQuestion(index) {
-            if (disabled[currentQuiz]) return; // If already disabled, return
-            
-            answers[currentQuiz] = index;
-            disabled[currentQuiz] = true; // Disable options
-            
-            // ボタンが押された後に0.5秒待ってから画面を切り替える
-            setTimeout(() => {
-                currentQuiz++;
-                if (currentQuiz < quizzes.length) {
-                    loadQuiz();
-                } else {
-                    const answersText = answers.map((answer, index) => `Q${index + 1}: ${answer + 1}`).join('\n');
-                    //showPopup(`回答結果:\n${answersText}`);
-                    initializeLiff0003(); // 最後の問題が答えられたら自動で送信
-                }
-            }, 500); // ボタンを押してから画面切り替えまでの遅延
-        }
 
 
-
-
-
-
-
-   function initializeLiff0003() {
-      liff.init({ liffId: '1657196041-vDWabr0g' })
-        .then(() => {
-          if (liff.isLoggedIn()) {
-            sendIdTokenToGAS_00A3(); // IDトークンをGASに送信する関数を呼び出す
-          } else {
-            liff.login(); // ログインしていない場合はログインページにリダイレクト
-          }
-        })
-        .catch(error => {
-          console.error('LIFFの初期化エラー:', error);
-          alert('LIFFの初期化に失敗しました。');
-        });
+  
+ // メッセージを表示する関数
+    function displayMessage(message) {
+        const messageElement = document.createElement('p');
+        messageElement.textContent = message;
+        document.body.appendChild(messageElement);
     }
 
-    async function sendIdTokenToGAS_00A3() {
-      try {
-        const idToken = await liff.getIDToken();
+    // 取得したデータをHTMLに表示する関数
+    function displayData(data) {
+        const jsonData = JSON.parse(data);
 
-　　const answersplusone = answers.map(answer => answer + 1);
-          
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzfwX4moL3LmZuawZ7KJd5Zus6jwGRV0UeA1yy7clHrm5_wbqJWzX6KF9LB-hyWH8_TCg/exec', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
- 　　　　　　　body: JSON.stringify({
-                'idToken': idToken,
-                'answers': answersplusone // JSON形式で送信
-            })
-        });
 
-        if (!response.ok) {
-          console.error('HTTPエラー:', response.status);
-          alert('HTTPエラーが発生しました。ステータスコード: ' + response.status);
-          return;
-        }
+   const progressBar0 = document.getElementById('progressBar_vertical');
+   // progressBar0.textContent = `あと${jsonData.nextRank} pt `; 
+  progressBar0.style.height = `${jsonData.progress_rate*100}`+'%';
+ //progressBar0.style.height = "10"+"vw";
 
-        const data = await response.json();
-        if (data.status === 'success') {
-          showPopup(data.message);
-        } else {
-          showPopup('エラー: ' + data.message);
-        }
-      } catch (error) {
-        console.error('通信エラー:', error);
-        alert('通信エラーが発生しました。');
-      }
+
+
+  // const progressBar = document.getElementById('progressBar');
+   // progressBar.textCont//ent = `${jsonData.score} `; 
+ // progressBar.style.width = `${jsonData.progress_rate*100}`+'vw';
+ //progressBar.style.height = "10"+"vw";
+
+
+
+        const container2 = document.getElementById("data-container2");
+        const container3 = document.getElementById("data-container3");
+        const container4 = document.getElementById("data-container4");
+
+        const paragraph2 = document.createElement("p_pt");
+        paragraph2.textContent =`${jsonData.score}℗ `;　// pt
+　　　　container2.textContent = ""; // 既存のコンテンツをクリア
+        container2.appendChild(paragraph2);
+
+        const paragraph3 = document.createElement("p_rank");
+        paragraph3.textContent = `${jsonData.rank} `;　//rank
+　　　　container3.textContent = ""; // 既存のコンテンツをクリア
+        container3.appendChild(paragraph3);
+        document.querySelector("pa").style.border = "1vw double gray";
+	    
+  document.querySelector(".vertical-progress-bar").style.border = "0.2vw solid gray";
+
+
+
+  if (jsonData.rank === "レギュラー") {
+      document.querySelector("pa").style.backgroundColor = "#f5deb3";
+    } else if (jsonData.rank === "シルバー") {
+      document.querySelector("pa").style.backgroundColor = "#f5f5f5";
+    } else if (jsonData.rank === "ゴールド") {
+      document.querySelector("pa").style.backgroundColor = "#f0e68c";
+    } else if (jsonData.rank === "プラチナ") {
+      document.querySelector("pa").style.backgroundColor = "#add8e6";
+    } else if (jsonData.rank === "ダイヤモンド") {
+      document.querySelector("pa").style.backgroundColor = "#1e90ff";
+    } else {
+      // その他の場合のデフォルトの背景色を設定
+      document.querySelector("pa").style.backgroundColor = "#f5f5dc";
+    }
+
     }
 
 
-
-
-
-        function showPopup(message) {
-            document.getElementById('popup-message').innerText = message;
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('popup').style.display = 'block';
-        }
-
-        function closePopup() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('popup').style.display = 'none';
-        }
-
-        loadQuiz(); // 最初のクイズをロード
     </script>
 </body>
 </html>
+
